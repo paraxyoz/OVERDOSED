@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERDOSED – Product Purchase</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header section -->
+        <header class="header">
+            <div class="header-top">
+                <a href="index.html" class="header-link">INFO</a>
+                <span class="header-link">// PRZEDAWKOWANIE // ÜBERDOSIS // IDEZIOS // 过量酷用 //</span>
+                <a href="#" class="search-icon">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+            
+            <!-- Логотип OVERDOSED с ссылкой на главную -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <h1 class="logo">OVERDOSED</h1>
+                </a>
+            </div>
+            
+            <!-- Навигационная строка -->
+            <nav class="main-nav">
+                <a href="index.html#collections" class="nav-link">// <span class="nav-text">COLLECTIONS</span></a>
+                <a href="index.html#shop" class="nav-link">// <span class="nav-text">SHOP</span></a>
+                <a href="index.html#lookbook" class="nav-link">// <span class="nav-text">LOOKBOOK</span></a>
+                <a href="https://www.ssense.com" target="_blank" class="nav-link">// <span class="nav-text">SSENSE</span></a>
+            </nav>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="product-purchase-container">
+                <!-- Product image section -->
+                <div class="purchase-image-section">
+                    <div class="product-large-image">
+                        <img id="productImage" src="images/enemy-system-tshirt.png" alt="Product" class="large-product-img">
+                        <div class="image-fallback-purchase">Product Image</div>
+                    </div>
+                </div>
+
+                <!-- Product details section -->
+                <div class="purchase-details-section">
+                    <!-- Product title -->
+                    <div class="purchase-header">
+                        <h1 class="purchase-title">ENEMY SYSTEM <span class="red-text">T-SHIRT</span></h1>
+                        <div class="purchase-price">$180</div>
+                    </div>
+
+                    <!-- Product description -->
+                    <div class="purchase-description">
+                        <p>Высокое качество и стиль в одном изделии. Специально разработано для тех, кто не боится выделяться.</p>
+                    </div>
+
+                    <!-- Size selection -->
+                    <div class="size-selection">
+                        <label class="selection-label">SIZE</label>
+                        <div class="size-grid">
+                            <button class="size-btn" data-size="XS">XS</button>
+                            <button class="size-btn" data-size="S">S</button>
+                            <button class="size-btn" data-size="M">M</button>
+                            <button class="size-btn active" data-size="L">L</button>
+                            <button class="size-btn" data-size="XL">XL</button>
+                            <button class="size-btn" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+
+                    <!-- Product specifications -->
+                    <div class="specifications">
+                        <label class="selection-label">МАТЕРИАЛ И ХАРАКТЕРИСТИКИ</label>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Материал</span>
+                                <span class="spec-value">100% Хлопок</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Плотность</span>
+                                <span class="spec-value">250 г/м²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Крой</span>
+                                <span class="spec-value">Оверсайз</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Печать</span>
+                                <span class="spec-value">Прямая печать</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Уход</span>
+                                <span class="spec-value">Машинная стирка 30°C</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Происхождение</span>
+                                <span class="spec-value">Изготовлено в ЕС</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity selector -->
+                    <div class="quantity-selector">
+                        <label class="selection-label">КОЛИЧЕСТВО</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" id="decreaseQty">−</button>
+                            <input type="number" id="quantity" min="1" max="10" value="1" class="qty-input">
+                            <button class="qty-btn" id="increaseQty">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Purchase button -->
+                    <button class="buy-button">
+                        КУПИТЬ • $180
+                    </button>
+
+                    <!-- Additional info -->
+                    <div class="purchase-footer-info">
+                        <div class="info-item">
+                            <i class="fas fa-truck"></i>
+                            <span>Доставка по всему миру</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-undo"></i>
+                            <span>14 дней на возврат</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Безопасные платежи</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about" class="footer-link">ABOUT</a>
+                    <a href="#contact" class="footer-link">CONTACT</a>
+                    <a href="#shipping" class="footer-link">SHIPPING</a>
+                    <a href="#returns" class="footer-link">RETURNS</a>
+                    <a href="#privacy" class="footer-link">PRIVACY POLICY</a>
+                    <a href="#terms" class="footer-link">TERMS OF SERVICE</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link">SITE CREATOR</a>
+                    <a href="https://instagram.com" target="_blank" class="social-link">INSTAGRAM</a>
+                    <a href="mailto:contact@overdosed.com" class="social-link">EMAIL</a>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; 2026 OVERDOSED. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="product.js"></script>
+</body>
+</html>
