@@ -1092,8 +1092,7 @@ function buildLanguageModal() {
 
   const title = document.createElement('h3');
   title.className = 'lang-modal-title';
-  title.setAttribute('data-i18n', 'select_language');
-  title.textContent = t('select_language');
+  title.textContent = 'SELECT LANGUAGE';
 
   const closeBtn = document.createElement('button');
   closeBtn.className = 'lang-modal-close';
