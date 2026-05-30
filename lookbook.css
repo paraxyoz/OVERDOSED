@@ -11,7 +11,6 @@
     min-height: 300px;
     background-color: transparent;
     border: none;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,12 +55,12 @@
 }
 
 .carousel-prev {
-    left: 15px;
+    left: -60px;
     animation: slideInLeft 0.8s ease-out 0.9s both;
 }
 
 .carousel-next {
-    right: 15px;
+    right: -60px;
     animation: slideInRight 0.8s ease-out 0.9s both;
 }
 
@@ -139,6 +138,14 @@
         font-size: 14px;
     }
 
+    .carousel-prev {
+        left: -40px;
+    }
+
+    .carousel-next {
+        right: -40px;
+    }
+
     .thumb-item {
         width: 70px;
         height: 85px;
@@ -162,11 +169,11 @@
     }
 
     .carousel-prev {
-        left: 6px;
+        left: -30px;
     }
 
     .carousel-next {
-        right: 6px;
+        right: -30px;
     }
 
     .thumb-item {
@@ -192,11 +199,11 @@
     }
 
     .carousel-prev {
-        left: 4px;
+        left: -25px;
     }
 
     .carousel-next {
-        right: 4px;
+        right: -25px;
     }
 
     .thumb-item {
