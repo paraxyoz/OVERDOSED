@@ -24,7 +24,7 @@
     object-fit: cover;
     display: block;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.2s ease;
 }
 
 .carousel-image.visible {
