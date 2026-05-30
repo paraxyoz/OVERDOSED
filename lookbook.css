@@ -24,6 +24,11 @@
     object-fit: cover;
     display: block;
     animation: fadeIn 1s ease-out 0.7s both;
+    transition: opacity 0.4s ease;
+}
+
+.carousel-image.fade-out {
+    opacity: 0;
 }
 
 .carousel-arrow {

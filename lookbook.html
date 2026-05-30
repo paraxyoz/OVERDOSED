@@ -125,12 +125,13 @@
             if (index >= images.length) index = 0;
             currentIndex = index;
 
-            mainImage.style.opacity = 0;
-            setTimeout(() => {
+            mainImage.classList.add('fade-out');
+            mainImage.addEventListener('transitionend', function handler() {
+                mainImage.removeEventListener('transitionend', handler);
                 mainImage.src = images[currentIndex].src;
                 mainImage.alt = images[currentIndex].alt;
-                mainImage.style.opacity = 1;
-            }, 200);
+                mainImage.classList.remove('fade-out');
+            });
 
             counter.textContent = `${currentIndex + 1} / ${images.length}`;
 
@@ -164,7 +165,6 @@
             if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        mainImage.style.transition = 'opacity 0.3s ease';
         buildThumbs();
         updateCarousel(0);
         resetAutoPlay();
