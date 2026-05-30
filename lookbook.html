@@ -125,13 +125,12 @@
             if (index >= images.length) index = 0;
             currentIndex = index;
 
-            mainImage.classList.add('fade-out');
-            mainImage.addEventListener('transitionend', function handler() {
-                mainImage.removeEventListener('transitionend', handler);
+            mainImage.classList.remove('visible');
+            setTimeout(() => {
                 mainImage.src = images[currentIndex].src;
                 mainImage.alt = images[currentIndex].alt;
-                mainImage.classList.remove('fade-out');
-            });
+                mainImage.classList.add('visible');
+            }, 400);
 
             counter.textContent = `${currentIndex + 1} / ${images.length}`;
 
