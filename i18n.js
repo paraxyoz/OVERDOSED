@@ -1127,11 +1127,17 @@ function buildLanguageModal() {
 function buildMarquee() {
   const marquee = document.getElementById('headerMarquee');
   if (!marquee) return;
-  const words = LANGUAGES.map(lang => {
-    const tagline = TRANSLATIONS[lang.code]?.header_tagline || '';
-    const match = tagline.match(/\/\/\s*(.*?)\s*\//);
-    return match ? match[1].trim() : '';
-  });
+  const words = [
+    'ПЕРЕДОЗИРОВКА',
+    'PRZEDAWKOWAĆ',
+    'ПЕРАДАЗІРОЎКА',
+    'SUPRADOZAT',
+    'ПРЕДОЗИРАН',
+    'PŘEDÁVKOVANÝ',
+    'PERDOZUOTAS',
+    'PĀRDOZĒTS',
+    'ÜLEDOOSI SAANUD'
+  ];
   const content = words.join(' // ');
   marquee.innerHTML = '<div class="marquee-track">' + content + ' // ' + content + ' // </div>';
 }
