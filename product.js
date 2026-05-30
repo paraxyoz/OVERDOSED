@@ -1,13 +1,14 @@
 const productsData = {
   1: {
-    price: 380,
+    price: 3500,
+    priceUSD: 50,
     image: 'images/ti_gotov.png',
     nameKey: 'product_1_name',
     fullNameKey: 'product_1_fullname',
     descKey: 'product_1_desc',
     specs: {
       materialKey: 'cotton70poly30',
-      densityKey: 'density320',
+      densityKey: 'density250',
       cutKey: 'oversize',
       printKey: 'embroidery',
       careKey: 'wash40',
@@ -15,15 +16,16 @@ const productsData = {
     }
   },
   2: {
-    price: 380,
-    image: 'images/ya_broshu.png',
+    price: 4500,
+    priceUSD: 65,
+    image: 'images/rubashka.png',
     nameKey: 'product_2_name',
     fullNameKey: 'product_2_fullname',
     descKey: 'product_2_desc',
     specs: {
-      materialKey: 'cotton70poly30',
+      materialKey: 'cottonhz',
       densityKey: 'density320',
-      cutKey: 'oversize',
+      cutKey: 'oversize1',
       printKey: 'embroidery',
       careKey: 'wash40',
       originKey: 'made_in_eu_alt'
@@ -37,6 +39,10 @@ const SPEC_LABEL_KEYS = ['material', 'density', 'cut', 'print', 'care', 'origin'
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);
   return parseInt(params.get('id')) || 3;
+}
+
+function getEffectivePrice(product) {
+  return t('currency') === '₽' ? product.price : product.priceUSD;
 }
 
 function updateProductPage() {
@@ -53,7 +59,8 @@ function updateProductPage() {
   purchaseTitle.innerHTML = t(product.fullNameKey);
 
   const purchasePrice = document.querySelector('.purchase-price');
-  purchasePrice.textContent = `$${product.price}`;
+  const effectivePrice = getEffectivePrice(product);
+  purchasePrice.textContent = formatPrice(effectivePrice);
 
   const purchaseDescription = document.querySelector('.purchase-description p');
   purchaseDescription.textContent = t(product.descKey);
@@ -75,10 +82,10 @@ function updateProductPage() {
   });
 
   const buyButton = document.querySelector('.buy-button');
-  const currentPrice = (window.basePrice || product.price) * (parseInt(document.getElementById('quantity')?.value || '1'));
-  buyButton.innerHTML = `${t('buy')} • $${currentPrice.toFixed(2)}`;
+  const currentPrice = (window.basePrice || effectivePrice) * (parseInt(document.getElementById('quantity')?.value || '1'));
+  buyButton.innerHTML = `${t('buy')} • ${formatPrice(currentPrice)}`;
 
-  window.basePrice = product.price;
+  window.basePrice = effectivePrice;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -92,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let selectedSize = 'L';
   let quantity = 1;
-  const basePrice = window.basePrice || 180;
 
   sizeBtns.forEach(btn => {
     btn.addEventListener('click', function() {
@@ -128,18 +134,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   function updatePrice() {
-    const totalPrice = (basePrice * quantity).toFixed(2);
-    buyButton.innerHTML = `${t('buy')} • $${totalPrice}`;
+    const productId = getProductIdFromURL();
+    const product = productsData[productId];
+    const totalPrice = (getEffectivePrice(product) * quantity).toFixed(2);
+    buyButton.innerHTML = `${t('buy')} • ${formatPrice(totalPrice)}`;
   }
 
   buyButton.addEventListener('click', function() {
     const productId = getProductIdFromURL();
     const product = productsData[productId];
-    const totalPrice = (basePrice * quantity).toFixed(2);
+    const totalPrice = (getEffectivePrice(product) * quantity).toFixed(2);
 
-    const message = `${t('order_message')}%0A%0A${t('product_label')}: ${t(product.nameKey)}%0A${t('size_label')}: ${selectedSize}%0A${t('quantity_label')}: ${quantity}%0A${t('total_label')}: $${totalPrice}`;
+    const message = `${t('order_message')}%0A%0A${t('product_label')}: ${t(product.nameKey)}%0A${t('size_label')}: ${selectedSize}%0A${t('quantity_label')}: ${quantity}%0A${t('total_label')}: ${formatPrice(totalPrice)}`;
 
-    const telegramUrl = `https://t.me/share/url?url=overdosed.com&text=${message}`;
+    const telegramUrl = `https://t.me/overdosed_manager?text=${message}`;
     window.open(telegramUrl, '_blank');
   });
 
@@ -150,6 +158,8 @@ document.addEventListener('languageChanged', function() {
   updateProductPage();
   const buyButton = document.querySelector('.buy-button');
   const qty = parseInt(document.getElementById('quantity')?.value || '1');
-  const price = (window.basePrice || 180) * qty;
-  buyButton.innerHTML = `${t('buy')} • $${price.toFixed(2)}`;
+  const productId = getProductIdFromURL();
+  const product = productsData[productId];
+  const price = getEffectivePrice(product) * qty;
+  buyButton.innerHTML = `${t('buy')} • ${formatPrice(price)}`;
 });

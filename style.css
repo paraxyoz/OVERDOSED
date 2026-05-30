@@ -236,11 +236,25 @@ a {
 }
 
 .availability {
-    font-size: 25px;
-    letter-spacing: 3px;
+    font-size: 38px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: #aaa;
-    line-height: 1.4;
+    line-height: 1.3;
+}
+
+.av-line-1 {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 6px;
+    margin-left: -20px;
+}
+
+.av-line-2 {
+    display: block;
+    font-size: 28px;
+    letter-spacing: 3px;
+    margin-left: 40px;
 }
 
 /* XXX с ГОРИЗОНТАЛЬНЫМИ полосками */
@@ -973,7 +987,17 @@ a {
     }
     
     .availability {
-        font-size: 16px;
+        font-size: 28px;
+    }
+    
+    .av-line-1 {
+        font-size: 32px;
+        margin-left: -10px;
+    }
+    
+    .av-line-2 {
+        font-size: 22px;
+        margin-left: 20px;
     }
     
     .xxx-above-image {
@@ -1049,8 +1073,18 @@ a {
     }
     
     .availability {
-        font-size: 14px;
+        font-size: 22px;
         letter-spacing: 2px;
+    }
+    
+    .av-line-1 {
+        font-size: 26px;
+        margin-left: 0;
+    }
+    
+    .av-line-2 {
+        font-size: 18px;
+        margin-left: 10px;
     }
     
     .xxx-above-image {

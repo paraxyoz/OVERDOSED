@@ -3,18 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVXM021LWP"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied'
-      });
-      gtag('js', new Date());
-      gtag('config', 'G-QVXM021LWP');
-    </script>
-    <title>OVERDOSED – Available on Website</title>
+    <title>OVERDOSED – Not a Drugs</title>
+    <link rel="icon" type="image/png" href="images/photo_2025-02-17_22-31-16-Photoroom.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +16,7 @@
         <!-- Header section -->
         <header class="header">
             <div class="header-top">
-                <a href="#" class="header-link" id="langToggle">LANGUAGES</a>
+                <a href="#" class="header-link" id="langToggle" data-i18n="languages">ЯЗЫКИ</a>
                 <div class="marquee" id="headerMarquee"></div>
                 <a href="#" class="search-icon">
                     <i class="fas fa-search"></i>
@@ -36,7 +26,7 @@
             <!-- Логотип OVERDOSED с ссылкой на главную -->
             <div class="logo-section">
                 <a href="index.html" class="logo-link">
-                    <h1 class="logo">ОВЕРДОЗЕ</h1>
+                    <h1 class="logo">ОВЕРДОЗ</h1>
                 </a>
             </div>
             
@@ -51,8 +41,7 @@
         <main class="main-content">
             <div class="product-hero">
                 <div class="product-title-section">
-                    <h2 class="product-title" data-i18n="hero_title">ПИВЧАНСКИЙ —</h2>
-                    <p class="availability" data-i18n="availability" data-i18n-html="true">Уничтожь <span class="red-text">врага//</span><br>В нашей одежде...</p>
+                    <p class="availability" data-i18n="availability" data-i18n-html="true"><span class="av-line-1">Рано или поздно он —</span> <span class="red-text av-line-2">до вас доберётся</span></p>
                 </div>
 
                 <!-- XXX с ГОРИЗОНТАЛЬНЫМИ полосками над изображением -->
@@ -91,8 +80,8 @@
                                 <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
                             </div>
                             <div class="product-info">
-                                <h4 class="product-name" data-i18n="product_1_fullname" data-i18n-html="true"><span class="red-text">ФУТБОЛКА</span> Ты готов?</h4>
-                                <div class="product-price">$380</div>
+                                <h4 class="product-name" data-i18n="product_1_fullname" data-i18n-html="true" data-i18n-ru='<span class="red-text">ФУТБОЛКА</span> ИЗДЕЛИЕ №1' data-i18n-en='<span class="red-text">T-SHIRT</span> PRODUCT №1'><span class="red-text">ФУТБОЛКА</span> ИЗДЕЛИЕ №1</h4>
+                                <div class="product-price" data-price-rub="3500" data-price-usd="50">3 500₽</div>
                             </div>
                         </div>
                     </a>
@@ -101,12 +90,12 @@
                     <a href="product.html?id=2" class="product-link">
                         <div class="product-card">
                             <div class="product-image-container">
-                                <img src="images/ya_broshu.png" alt="ENEMY SYSTEM HOODIE" class="product-img">
+                                <img src="images/rubashka.png" alt="ENEMY SYSTEM HOODIE" class="product-img">
                                 <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
                             </div>
                             <div class="product-info">
-                                <h4 class="product-name" data-i18n="product_2_fullname" data-i18n-html="true"><span class="red-text">ФУТБОЛКА</span> Я брошу...</h4>
-                                <div class="product-price">$380</div>
+                                <h4 class="product-name" data-i18n="product_2_fullname" data-i18n-html="true" data-i18n-ru='<span class="red-text">РУБАШКА</span> ИЗДЕЛИЕ №2' data-i18n-en='<span class="red-text">SHIRT</span> PRODUCT №2'><span class="red-text">РУБАШКА</span> ИЗДЕЛИЕ №2</h4>
+                                <div class="product-price" data-price-rub="4500" data-price-usd="65">4 500₽</div>
                             </div>
                         </div>
                     </a>
@@ -121,7 +110,7 @@
             <div class="footer-content">
                 <div class="footer-links">
                     <a href="about.html" class="footer-link" data-i18n="about">О НАС</a>
-                    <a href="#contact" class="footer-link" data-i18n="contact">КОНТАКТЫ</a>
+                    <a href="#" class="footer-link contact-link" data-i18n="contact">КОНТАКТЫ</a>
                     <a href="terms.html" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
                 </div>
                 
@@ -139,12 +128,23 @@
         </footer>
     </div>
 
-    <script src="cookie-consent.js"></script>
     <script src="i18n.js"></script>
     <script>
         // Mouse follow effect for main product image
         const productImage = document.querySelector('.product-image-link');
         const mainProductImg = document.querySelector('.main-product-img');
+
+        function updateIndexPrices() {
+          document.querySelectorAll('[data-price-rub]').forEach(el => {
+            const rub = parseFloat(el.dataset.priceRub);
+            const usd = parseFloat(el.dataset.priceUsd);
+            const c = t('currency');
+            el.textContent = c === '₽' ? formatPrice(rub) : formatPrice(usd);
+          });
+        }
+
+        updateIndexPrices();
+        document.addEventListener('languageChanged', updateIndexPrices);
 
         if (productImage && mainProductImg) {
             document.addEventListener('mousemove', (e) => {
