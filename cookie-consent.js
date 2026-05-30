@@ -61,10 +61,8 @@ function showCookieBanner() {
   document.body.appendChild(banner);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (getCookieConsent()) {
-    loadGoogleAnalytics();
-  } else {
-    showCookieBanner();
-  }
-});
+if (getCookieConsent()) {
+  loadGoogleAnalytics();
+} else {
+  showCookieBanner();
+}
