@@ -89,6 +89,8 @@ a {
     color: #aaa;
     font-size: inherit;
     letter-spacing: inherit;
+    mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
 }
 
 .marquee-track {
