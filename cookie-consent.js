@@ -1,6 +1,4 @@
-// ===== Cookie Consent & Google Analytics =====
-// Замени GA_ID на свой идентификатор Google Analytics
-const GA_ID = 'G-QVXM021LWP';
+// ===== Cookie Consent Management =====
 
 function getCookieConsent() {
   return localStorage.getItem('overdosed_cookie_consent') === 'true';
@@ -10,19 +8,10 @@ function setCookieConsent() {
   localStorage.setItem('overdosed_cookie_consent', 'true');
 }
 
-function loadGoogleAnalytics() {
-  if (window.gaLoaded) return;
-  window.gaLoaded = true;
-
-  const script = document.createElement('script');
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-  script.async = true;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', GA_ID);
+function grantConsent() {
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted'
+  });
 }
 
 function showCookieBanner() {
@@ -49,11 +38,11 @@ function showCookieBanner() {
   btn.onmouseout = function() { this.style.background = '#ff0000'; };
   btn.onclick = function() {
     setCookieConsent();
+    grantConsent();
     const parent = this.parentNode;
     parent.style.transition = 'opacity 0.3s ease';
     parent.style.opacity = '0';
     setTimeout(function() { parent.remove(); }, 300);
-    loadGoogleAnalytics();
   };
 
   banner.appendChild(text);
@@ -62,7 +51,7 @@ function showCookieBanner() {
 }
 
 if (getCookieConsent()) {
-  loadGoogleAnalytics();
+  grantConsent();
 } else {
   showCookieBanner();
 }
