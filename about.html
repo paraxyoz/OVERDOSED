@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVXM021LWP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-QVXM021LWP');
+    </script>
+    <title>OVERDOSED – О нас</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .about-title {
+            font-size: clamp(28px, 5vw, 60px);
+            font-weight: 400;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .about-subtitle {
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .about-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .about-divider-line {
+            width: 60px;
+            height: 1px;
+            background-color: #333;
+        }
+
+        .about-divider-xxx {
+            color: #ff0000;
+            font-size: 16px;
+            letter-spacing: 6px;
+        }
+
+        .about-block {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .about-block:nth-child(1) { animation-delay: 0.4s; }
+        .about-block:nth-child(2) { animation-delay: 0.6s; }
+        .about-block:nth-child(3) { animation-delay: 0.8s; }
+        .about-block:nth-child(4) { animation-delay: 1.0s; }
+
+        .about-block h2 {
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #f0f0f0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .about-block h2 .red-text {
+            color: #ff0000;
+        }
+
+        .about-block p {
+            font-size: 13px;
+            line-height: 2;
+            color: #aaa;
+            letter-spacing: 0.3px;
+        }
+
+        .about-block p .highlight-red {
+            color: #f0f0f0;
+        }
+
+        .about-quote {
+            border-left: 2px solid #ff0000;
+            padding: 20px 25px;
+            margin: 30px 0;
+            background: rgba(255, 0, 0, 0.03);
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ccc;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .about-quote .author {
+            display: block;
+            margin-top: 15px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #666;
+            font-style: normal;
+            text-transform: uppercase;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .about-stat {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid #222;
+            transition: border-color 0.3s;
+        }
+
+        .about-stat:hover {
+            border-color: #ff0000;
+        }
+
+        .about-stat-number {
+            font-size: clamp(28px, 3vw, 42px);
+            font-weight: 300;
+            color: #ff0000;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .about-stat-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .about-value {
+            padding: 25px;
+            border: 1px solid #222;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .about-value:hover {
+            border-color: #ff0000;
+            transform: translateY(-3px);
+        }
+
+        .about-value h3 {
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f0f0f0;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .about-value h3 .red-accent {
+            color: #ff0000;
+        }
+
+        .about-value p {
+            font-size: 11px;
+            line-height: 1.8;
+            color: #888;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 0 15px;
+                margin-bottom: 60px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-section {
+                padding: 0 10px;
+                margin-bottom: 40px;
+            }
+
+            .about-block p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <a href="#" class="header-link" id="langToggle">LANGUAGES</a>
+                <div class="marquee" id="headerMarquee"></div>
+                <a href="#" class="search-icon">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <h1 class="logo">ОВЕРДОЗЕ</h1>
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html#shop" class="nav-link">// <span class="nav-text" data-i18n="shop">МАГАЗИН</span> \\</a>
+                <a href="lookbook.html" class="nav-link">// <span class="nav-text" data-i18n="lookbook">ЛУКБУК</span> \\</a>
+            </nav>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <section class="about-section">
+                <h1 class="about-title">OVERDOSED</h1>
+                <p class="about-subtitle">Основано в 2026. Четыре. Один пульс.</p>
+
+                <div class="about-divider">
+                    <div class="about-divider-line"></div>
+                    <span class="about-divider-xxx">XXX</span>
+                    <div class="about-divider-line"></div>
+                </div>
+
+                <div class="about-block">
+                    <h2>Кто мы</h2>
+                    <p>
+                        <span class="highlight-red">OVERDOSED</span> — это не бренд. Это состояние. 
+                        Четыре подростка из разных городов, объединённые одной частотой, решили, 
+                        что ждать, пока мир изменится — бессмысленно. Мы взяли вещи в свои руки 
+                        и создали то, во что верим сами.
+                    </p>
+                    <p>
+                        Мы не нанимали дизайнеров. Мы не заказывали маркетинговые исследования. 
+                        Мы просто начали делать. Каждая вещь проходит через наши руки. Каждый шов, 
+                        каждый принт, каждая строчка — это наша личная подпись.
+                    </p>
+                </div>
+
+                <div class="about-divider">
+                    <div class="about-divider-line"></div>
+                    <span class="about-divider-xxx">XXX</span>
+                    <div class="about-divider-line"></div>
+                </div>
+
+                <div class="about-block">
+                    <h2>2026 — начало</h2>
+                    <p>
+                        В начале 2026 года четыре человека, знакомых по общей социальной сети, 
+                        встретились в Москве. У каждого был свой бэкграунд: кто-то разбирался 
+                        в производстве, кто-то в графике, кто-то просто умел находить правильных 
+                        людей. На первой встрече не было ничего, кроме идеи и пачки эскизов, 
+                        нарисованных в заметках телефона.
+                    </p>
+                    <p>
+                        Через месяц была отшита первая партия. Ещё через месяц — распродана. 
+                        Так родился OVERDOSED.
+                    </p>
+                </div>
+
+                <div class="about-quote">
+                    «Мы не пытаемся быть модными. Мода — это то, что придумали другие. 
+                    Мы — то, что происходит, когда перестаёшь оглядываться на других и 
+                    начинаешь делать по-своему. Даже если это слишком громко. 
+                    Даже если это передоз.»
+                    <span class="author">— Основатели OVERDOSED</span>
+                </div>
+
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="about-stat-number">2026</div>
+                        <div class="about-stat-label">Год основания</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">4</div>
+                        <div class="about-stat-label">Основателя</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">2</div>
+                        <div class="about-stat-label">Выпущенных модели</div>
+                    </div>
+                </div>
+
+                <div class="about-divider">
+                    <div class="about-divider-line"></div>
+                    <span class="about-divider-xxx">XXX</span>
+                    <div class="about-divider-line"></div>
+                </div>
+
+                <div class="about-block">
+                    <h2>Что мы создаём</h2>
+                    <p>
+                        Каждая вещь OVERDOSED — это ограниченная серия. Мы не печатаем тиражи 
+                        ради тиражей. Каждая модель существует в одном потоке: когда его сметают — 
+                        поток закрывается. Вернуть вещь нельзя. Допечатать нельзя. Только следующий 
+                        дроп.
+                    </p>
+                    <p>
+                        Мы работаем с прямыми поставщиками в России и Европе. Контролируем 
+                        качество на всех этапах — от закупки ткани до упаковки готового изделия. 
+                        Мы не используем синтетику там, где обещаем хлопок. Мы не экономим на 
+                        фурнитуре. Мы не делаем «лишь бы продать».
+                    </p>
+                </div>
+
+                <div class="about-block">
+                    <h2>Философия</h2>
+                    <div class="about-values">
+                        <div class="about-value">
+                            <h3><span class="red-accent">//</span> Аутентичность</h3>
+                            <p>Мы не копируем. Мы не подстраиваемся. Каждая вещь — это отражение нашего состояния здесь и сейчас.</p>
+                        </div>
+                        <div class="about-value">
+                            <h3><span class="red-accent">//</span> Дефицит</h3>
+                            <p>Ограниченные дропы — не маркетинг. Это принцип. Вещь должна быть редкой, чтобы быть ценной.</p>
+                        </div>
+                        <div class="about-value">
+                            <h3><span class="red-accent">//</span> Качество</h3>
+                            <p>Материалы, производство, упаковка — мы не идём на компромиссы. Ты чувствуешь разницу, когда берёшь вещь в руки.</p>
+                        </div>
+                        <div class="about-value">
+                            <h3><span class="red-accent">//</span> Сообщество</h3>
+                            <p>OVERDOSED — это не про покупку. Это про принадлежность. Ты носишь не одежду — ты носишь идею.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-quote">
+                    «Мы не знаем, где будем через год. Может, нас будут носить по всему миру. 
+                    Может, мы останемся маленьким комьюнити. Но одно мы знаем точно: 
+                    мы будем делать то, во что верим. До последней капли. До передозировки.»
+                    <span class="author">— OVERDOSED, 2026</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="about.html" class="footer-link" data-i18n="about">О НАС</a>
+                    <a href="#contact" class="footer-link" data-i18n="contact">КОНТАКТЫ</a>
+                    <a href="terms.html" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://t.me/overdosedstore" target="_blank" class="social-link">TELEGRAM</a>
+                    <a href="https://vk.com/overdosed" target="_blank" class="social-link">VK</a>
+                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link social-link-faded">РАЗРАБОТЧИК САЙТА</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p data-i18n="copyright">&copy; 2026 OVERDOSED. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="cookie-consent.js"></script>
+    <script src="i18n.js"></script>
+</body>
+</html>
