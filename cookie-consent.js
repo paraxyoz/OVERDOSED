@@ -1,6 +1,6 @@
 // ===== Cookie Consent & Google Analytics =====
 // Замени GA_ID на свой идентификатор Google Analytics
-const GA_ID = 'G-XXXXXXXXXX';
+const GA_ID = 'G-QVXM021LWP';
 
 function getCookieConsent() {
   return localStorage.getItem('overdosed_cookie_consent') === 'true';
