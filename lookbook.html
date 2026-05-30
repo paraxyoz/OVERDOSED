@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERDOSED – Lookbook</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lookbook.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <a href="#" class="header-link" id="langToggle" data-i18n="languages">ЯЗЫКИ</a>
+                <span class="header-link" data-i18n="header_tagline">// ПЕРЕДОЗИРОВКА // ПРЕДОЗИРАНЕ // PRZEDAWKOWANIE //</span>
+                <a href="#" class="search-icon">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+
+            <div class="logo-section">
+                <a href="index.html" class="logo-link">
+                    <h1 class="logo">OVERDOSED</h1>
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html#shop" class="nav-link">// <span class="nav-text" data-i18n="shop">МАГАЗИН</span> \\</a>
+                <a href="lookbook.html" class="nav-link">// <span class="nav-text" data-i18n="lookbook">ЛУКБУК</span> \\</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="section-header">
+                <div class="section-line"></div>
+                <h3 class="section-title" data-i18n="lookbook">LOOKBOOK</h3>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="lookbook-carousel">
+                <div class="carousel-main" id="carouselMain">
+                    <button class="carousel-arrow carousel-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <img id="mainImage" src="" alt="Lookbook" class="carousel-image">
+                    <button class="carousel-arrow carousel-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-counter" id="carouselCounter">0 / 0</div>
+                </div>
+
+                <div class="carousel-thumbs" id="carouselThumbs"></div>
+            </div>
+
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about" class="footer-link" data-i18n="about">О НАС</a>
+                    <a href="#contact" class="footer-link" data-i18n="contact">КОНТАКТЫ</a>
+                    <a href="#shipping" class="footer-link" data-i18n="shipping">ДОСТАВКА</a>
+                    <a href="#returns" class="footer-link" data-i18n="returns">ВОЗВРАТ</a>
+                    <a href="#privacy" class="footer-link" data-i18n="privacy_policy">КОНФИДЕНЦИАЛЬНОСТЬ</a>
+                    <a href="#terms" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://t.me/overdosedstore" target="_blank" class="social-link">TELEGRAM</a>
+                    <a href="https://vk.com/overdosed" target="_blank" class="social-link">VK</a>
+                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link social-link-faded">РАЗРАБОТЧИК САЙТА</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p data-i18n="copyright">&copy; 2026 OVERDOSED. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+        const images = [
+            { src: 'images/lookbook/photo_2025-03-11_14-56-39.jpg', alt: 'Look 1' },
+            { src: 'images/lookbook/photo_2025-03-13_20-46-18.jpg', alt: 'Look 2' },
+            { src: 'images/lookbook/photo_2025-03-14_20-02-21.jpg', alt: 'Look 3' },
+            { src: 'images/lookbook/photo_2025-03-23_23-32-39.jpg', alt: 'Look 5' },
+            { src: 'images/lookbook/photo_2025-05-08_22-55-17.jpg', alt: 'Look 6' },
+            { src: 'images/lookbook/photo_2025-05-08_22-55-18.jpg', alt: 'Look 7' },
+            { src: 'images/lookbook/photo_2025-05-08_22-55-27.jpg', alt: 'Look 9' },
+            { src: 'images/lookbook/photo_2025-05-08_22-55-28.jpg', alt: 'Look 10' },
+            { src: 'images/lookbook/photo_2025-06-08_23-54-16 (2).jpg', alt: 'Look 11' }
+        ];
+
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        const mainImage = document.getElementById('mainImage');
+        const counter = document.getElementById('carouselCounter');
+        const thumbsContainer = document.getElementById('carouselThumbs');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function buildThumbs() {
+            thumbsContainer.innerHTML = '';
+            images.forEach((img, i) => {
+                const div = document.createElement('div');
+                div.className = 'thumb-item' + (i === 0 ? ' active' : '');
+                div.dataset.index = i;
+                const thumbImg = document.createElement('img');
+                thumbImg.src = img.src;
+                thumbImg.alt = img.alt;
+                thumbImg.loading = 'lazy';
+                div.appendChild(thumbImg);
+                div.addEventListener('click', function() {
+                    updateCarousel(parseInt(this.dataset.index));
+                    resetAutoPlay();
+                });
+                thumbsContainer.appendChild(div);
+            });
+        }
+
+        function updateCarousel(index) {
+            if (images.length === 0) return;
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+            currentIndex = index;
+
+            mainImage.style.opacity = 0;
+            setTimeout(() => {
+                mainImage.src = images[currentIndex].src;
+                mainImage.alt = images[currentIndex].alt;
+                mainImage.style.opacity = 1;
+            }, 200);
+
+            counter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+            document.querySelectorAll('.thumb-item').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            updateCarousel(currentIndex + 1);
+            resetAutoPlay();
+        }
+
+        function prevSlide() {
+            updateCarousel(currentIndex - 1);
+            resetAutoPlay();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            if (images.length > 1) {
+                autoPlayInterval = setInterval(nextSlide, 10000);
+            }
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        mainImage.style.transition = 'opacity 0.3s ease';
+        buildThumbs();
+        updateCarousel(0);
+        resetAutoPlay();
+    </script>
+</body>
+</html>

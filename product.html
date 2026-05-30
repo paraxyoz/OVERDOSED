@@ -16,8 +16,8 @@
         <!-- Header section -->
         <header class="header">
             <div class="header-top">
-                <a href="index.html" class="header-link">INFO</a>
-                <span class="header-link">// PRZEDAWKOWANIE // ÜBERDOSIS // IDEZIOS // 过量酷用 //</span>
+                <a href="#" class="header-link" id="langToggle" data-i18n="languages">ЯЗЫКИ</a>
+                <span class="header-link" data-i18n="header_tagline">// ПЕРЕДОЗИРОВКА // ПРЕДОЗИРАНЕ // PRZEDAWKOWANIE //</span>
                 <a href="#" class="search-icon">
                     <i class="fas fa-search"></i>
                 </a>
@@ -26,16 +26,14 @@
             <!-- Логотип OVERDOSED с ссылкой на главную -->
             <div class="logo-section">
                 <a href="index.html" class="logo-link">
-                    <h1 class="logo">OVERDOSED</h1>
+                    <h1 class="logo">ОВЕРДОЗЕ</h1>
                 </a>
             </div>
             
             <!-- Навигационная строка -->
             <nav class="main-nav">
-                <a href="index.html#collections" class="nav-link">// <span class="nav-text">COLLECTIONS</span></a>
-                <a href="index.html#shop" class="nav-link">// <span class="nav-text">SHOP</span></a>
-                <a href="index.html#lookbook" class="nav-link">// <span class="nav-text">LOOKBOOK</span></a>
-                <a href="https://www.ssense.com" target="_blank" class="nav-link">// <span class="nav-text">SSENSE</span></a>
+                <a href="index.html#shop" class="nav-link">// <span class="nav-text" data-i18n="shop">МАГАЗИН</span> \\</a>
+                <a href="lookbook.html" class="nav-link">// <span class="nav-text" data-i18n="lookbook">ЛУКБУК</span> \\</a>
             </nav>
         </header>
 
@@ -65,51 +63,51 @@
 
                     <!-- Size selection -->
                     <div class="size-selection">
-                        <label class="selection-label">SIZE</label>
+                        <label class="selection-label" data-i18n="size">РАЗМЕР</label>
                         <div class="size-grid">
-                            <button class="size-btn" data-size="XS">XS</button>
-                            <button class="size-btn" data-size="S">S</button>
-                            <button class="size-btn" data-size="M">M</button>
-                            <button class="size-btn active" data-size="L">L</button>
-                            <button class="size-btn" data-size="XL">XL</button>
-                            <button class="size-btn" data-size="XXL">XXL</button>
+                            <button class="size-btn" data-size="1">1</button>
+                            <button class="size-btn" data-size="2">2</button>
+                            <button class="size-btn" data-size="3">3</button>
+                            <button class="size-btn active" data-size="4">4</button>
+                            <button class="size-btn" data-size="5">5</button>
+
                         </div>
                     </div>
 
                     <!-- Product specifications -->
                     <div class="specifications">
-                        <label class="selection-label">МАТЕРИАЛ И ХАРАКТЕРИСТИКИ</label>
+                        <label class="selection-label" data-i18n="specs_heading">МАТЕРИАЛ И ХАРАКТЕРИСТИКИ</label>
                         <div class="specs-grid">
                             <div class="spec-item">
-                                <span class="spec-label">Материал</span>
-                                <span class="spec-value">100% Хлопок</span>
+                                <span class="spec-label" data-i18n="material">Материал</span>
+                                <span class="spec-value" data-i18n="cotton100">100% Хлопок</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Плотность</span>
-                                <span class="spec-value">250 г/м²</span>
+                                <span class="spec-label" data-i18n="density">Плотность</span>
+                                <span class="spec-value" data-i18n="density250">250 г/м²</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Крой</span>
-                                <span class="spec-value">Оверсайз</span>
+                                <span class="spec-label" data-i18n="cut">Крой</span>
+                                <span class="spec-value" data-i18n="oversize">Оверсайз</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Печать</span>
-                                <span class="spec-value">Прямая печать</span>
+                                <span class="spec-label" data-i18n="print">Печать</span>
+                                <span class="spec-value" data-i18n="direct_print">Прямая печать</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Уход</span>
-                                <span class="spec-value">Машинная стирка 30°C</span>
+                                <span class="spec-label" data-i18n="care">Уход</span>
+                                <span class="spec-value" data-i18n="wash30">Машинная стирка 30°C</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">Происхождение</span>
-                                <span class="spec-value">Изготовлено в ЕС</span>
+                                <span class="spec-label" data-i18n="origin">Происхождение</span>
+                                <span class="spec-value" data-i18n="made_in_eu">Изготовлено в ЕС</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Quantity selector -->
                     <div class="quantity-selector">
-                        <label class="selection-label">КОЛИЧЕСТВО</label>
+                        <label class="selection-label" data-i18n="quantity">КОЛИЧЕСТВО</label>
                         <div class="quantity-controls">
                             <button class="qty-btn" id="decreaseQty">−</button>
                             <input type="number" id="quantity" min="1" max="10" value="1" class="qty-input">
@@ -119,22 +117,22 @@
 
                     <!-- Purchase button -->
                     <button class="buy-button">
-                        КУПИТЬ • $180
+                        <span data-i18n="buy">КУПИТЬ</span> • $180
                     </button>
 
                     <!-- Additional info -->
                     <div class="purchase-footer-info">
                         <div class="info-item">
                             <i class="fas fa-truck"></i>
-                            <span>Доставка по всему миру</span>
+                            <span data-i18n="worldwide_shipping">Доставка по всему миру</span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-undo"></i>
-                            <span>14 дней на возврат</span>
+                            <span data-i18n="returns_14days">14 дней на возврат</span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-lock"></i>
-                            <span>Безопасные платежи</span>
+                            <span data-i18n="secure_payments">Безопасные платежи</span>
                         </div>
                     </div>
                 </div>
@@ -145,28 +143,29 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="#about" class="footer-link">ABOUT</a>
-                    <a href="#contact" class="footer-link">CONTACT</a>
-                    <a href="#shipping" class="footer-link">SHIPPING</a>
-                    <a href="#returns" class="footer-link">RETURNS</a>
-                    <a href="#privacy" class="footer-link">PRIVACY POLICY</a>
-                    <a href="#terms" class="footer-link">TERMS OF SERVICE</a>
+                    <a href="#about" class="footer-link" data-i18n="about">О НАС</a>
+                    <a href="#contact" class="footer-link" data-i18n="contact">КОНТАКТЫ</a>
+                    <a href="#shipping" class="footer-link" data-i18n="shipping">ДОСТАВКА</a>
+                    <a href="#returns" class="footer-link" data-i18n="returns">ВОЗВРАТ</a>
+                    <a href="#privacy" class="footer-link" data-i18n="privacy_policy">КОНФИДЕНЦИАЛЬНОСТЬ</a>
+                    <a href="#terms" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
                 </div>
                 
                 <div class="social-links">
-                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link">SITE CREATOR</a>
-                    <a href="https://instagram.com" target="_blank" class="social-link">INSTAGRAM</a>
-                    <a href="mailto:contact@overdosed.com" class="social-link">EMAIL</a>
+                    <a href="https://t.me/overdosedstore" target="_blank" class="social-link">TELEGRAM</a>
+                    <a href="https://vk.com/overdosed" target="_blank" class="social-link">VK</a>
+                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link social-link-faded">РАЗРАБОТЧИК САЙТА</a>
                 </div>
             </div>
             
             <!-- Copyright -->
             <div class="copyright">
-                <p>&copy; 2026 OVERDOSED. All rights reserved.</p>
+                <p data-i18n="copyright">&copy; 2026 OVERDOSED. Все права защищены.</p>
             </div>
         </footer>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="product.js"></script>
 </body>
 </html>

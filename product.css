@@ -98,12 +98,16 @@
 }
 
 .size-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
 }
 
 .size-btn {
+    flex: 1;
+    min-width: 55px;
+    max-width: 90px;
     padding: 15px;
     background-color: transparent;
     border: 1px solid #444;
@@ -486,15 +490,17 @@
     }
 
     .size-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .size-btn {
+        min-width: 48px;
+        max-width: 80px;
+        padding: 12px;
     }
 
     .specs-grid {
         grid-template-columns: 1fr;
-    }
-
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 
@@ -504,16 +510,19 @@
     }
 
     .purchase-title {
-        font-size: 20px;
-        letter-spacing: 2px;
+        font-size: 18px;
+        letter-spacing: 1px;
     }
 
-    .size-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .purchase-price {
+        font-size: 16px;
     }
 
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+    .size-btn {
+        min-width: 42px;
+        max-width: 70px;
+        padding: 10px;
+        font-size: 11px;
     }
 
     .quantity-controls {
@@ -530,5 +539,69 @@
         width: 50px;
         padding: 6px 10px;
         font-size: 12px;
+    }
+
+    .buy-button {
+        padding: 14px 20px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .product-purchase-container {
+        gap: 15px;
+    }
+
+    .purchase-title {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .purchase-price {
+        font-size: 14px;
+    }
+
+    .purchase-description {
+        font-size: 12px;
+    }
+
+    .size-btn {
+        min-width: 36px;
+        max-width: 60px;
+        padding: 8px;
+        font-size: 10px;
+    }
+
+    .selection-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .buy-button {
+        padding: 12px 16px;
+        font-size: 11px;
+    }
+
+    .qty-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .qty-input {
+        width: 40px;
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .info-item {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .product-purchase-container {
+        max-width: 1200px;
+        margin: 0 auto;
     }
 }

@@ -15,8 +15,8 @@
         <!-- Header section -->
         <header class="header">
             <div class="header-top">
-                <a href="#" class="header-link">INFO</a>
-                <span class="header-link">// PRZEDAWKOWANIE // ÜBERDOSIS // IDEZIOS // 过量酷用 //</span>
+                <a href="#" class="header-link" id="langToggle" data-i18n="languages">ЯЗЫКИ</a>
+                <span class="header-link" data-i18n="header_tagline">// ПЕРЕДОЗИРОВКА // ПРЕДОЗИРАНЕ // PRZEDAWKOWANIE //</span>
                 <a href="#" class="search-icon">
                     <i class="fas fa-search"></i>
                 </a>
@@ -25,16 +25,14 @@
             <!-- Логотип OVERDOSED с ссылкой на главную -->
             <div class="logo-section">
                 <a href="index.html" class="logo-link">
-                    <h1 class="logo">OVERDOSED</h1>
+                    <h1 class="logo">ОВЕРДОЗЕ</h1>
                 </a>
             </div>
             
             <!-- Навигационная строка -->
             <nav class="main-nav">
-                <a href="#collections" class="nav-link">// <span class="nav-text">COLLECTIONS</span></a>
-                <a href="#shop" class="nav-link">// <span class="nav-text">SHOP</span></a>
-                <a href="#lookbook" class="nav-link">// <span class="nav-text">LOOKBOOK</span></a>
-                <a href="https://www.ssense.com" target="_blank" class="nav-link">// <span class="nav-text">SSENSE</span></a>
+                <a href="#shop" class="nav-link">// <span class="nav-text" data-i18n="shop">МАГАЗИН</span> \\</a>
+                <a href="lookbook.html" class="nav-link">// <span class="nav-text" data-i18n="lookbook">ЛУКБУК</span> \\</a>
             </nav>
         </header>
 
@@ -42,14 +40,14 @@
         <main class="main-content">
             <div class="product-hero">
                 <div class="product-title-section">
-                    <h2 class="product-title">You're blessed —</h2>
-                    <p class="availability">Destroy the <span class="red-text">enemy//</span><br>In our clothes...</p>
+                    <h2 class="product-title" data-i18n="hero_title">ПИВЧАНСКИЙ —</h2>
+                    <p class="availability" data-i18n="availability" data-i18n-html="true">Уничтожь <span class="red-text">врага//</span><br>В нашей одежде...</p>
                 </div>
 
                 <!-- XXX с ГОРИЗОНТАЛЬНЫМИ полосками над изображением -->
                 <div class="xxx-above-image">
                     <div class="horizontal-line"></div>
-                    <h2 class="xxx-title-above red-text">XXX</h2>
+                    <h2 class="xxx-title-above red-text" data-i18n="xxx">XXX</h2>
                     <div class="horizontal-line"></div>
                 </div>
                 
@@ -66,10 +64,10 @@
             </div>
             
             <!-- Products section -->
-            <section class="products-section">
+            <section class="products-section" id="shop">
                 <div class="section-header">
                     <div class="section-line"></div>
-                    <h3 class="section-title">PRODUCTS</h3>
+                    <h3 class="section-title" data-i18n="products">ТОВАРЫ</h3>
                     <div class="section-line"></div>
                 </div>
                 
@@ -82,7 +80,7 @@
                                 <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
                             </div>
                             <div class="product-info">
-                                <h4 class="product-name"><span class="red-text">T-Shirt</span> Ты готов?</h4>
+                                <h4 class="product-name" data-i18n="product_1_fullname" data-i18n-html="true"><span class="red-text">T-Shirt</span> Ты готов?</h4>
                                 <div class="product-price">$380</div>
                             </div>
                         </div>
@@ -96,39 +94,13 @@
                                 <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
                             </div>
                             <div class="product-info">
-                                <h4 class="product-name"><span class="red-text">T-Shirt</span> Я брошу...</h4>
+                                <h4 class="product-name" data-i18n="product_2_fullname" data-i18n-html="true"><span class="red-text">T-Shirt</span> Я брошу...</h4>
                                 <div class="product-price">$380</div>
                             </div>
                         </div>
                     </a>
                     
-                    <!-- Продукт 3 -->
-                    <a href="product.html?id=3" class="product-link">
-                        <div class="product-card">
-                            <div class="product-image-container">
-                                <img src="images/enemy-system-tshirt.png" alt="ENEMY SYSTEM T-SHIRT" class="product-img">
-                                <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM T-SHIRT</div>
-                            </div>
-                            <div class="product-info">
-                                <h4 class="product-name"><span class="red-text">T-SHIRT</span> coming soon</h4>
-                                <div class="product-price">$...</div>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- Продукт 4 -->
-                    <a href="product.html?id=4" class="product-link">
-                        <div class="product-card">
-                            <div class="product-image-container">
-                                <img src="images/vesper-hoodie.png" alt="VESPER HOODIE" class="product-img">
-                                <div class="image-fallback-small">VESPER HOODIE</div>
-                            </div>
-                            <div class="product-info">
-                                <h4 class="product-name"><span class="red-text">T-SHIRT</span> coming soon</h4>
-                                <div class="product-price">$...</div>
-                            </div>
-                        </div>
-                    </a>
+
                 </div>
             </section>
         </main>
@@ -137,28 +109,29 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="#about" class="footer-link">ABOUT</a>
-                    <a href="#contact" class="footer-link">CONTACT</a>
-                    <a href="#shipping" class="footer-link">SHIPPING</a>
-                    <a href="#returns" class="footer-link">RETURNS</a>
-                    <a href="#privacy" class="footer-link">PRIVACY POLICY</a>
-                    <a href="#terms" class="footer-link">TERMS OF SERVICE</a>
+                    <a href="#about" class="footer-link" data-i18n="about">О НАС</a>
+                    <a href="#contact" class="footer-link" data-i18n="contact">КОНТАКТЫ</a>
+                    <a href="#shipping" class="footer-link" data-i18n="shipping">ДОСТАВКА</a>
+                    <a href="#returns" class="footer-link" data-i18n="returns">ВОЗВРАТ</a>
+                    <a href="#privacy" class="footer-link" data-i18n="privacy_policy">КОНФИДЕНЦИАЛЬНОСТЬ</a>
+                    <a href="#terms" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
                 </div>
                 
                 <div class="social-links">
-                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link">SITE CREATOR</a>
-                    <a href="https://instagram.com" target="_blank" class="social-link">INSTAGRAM</a>
-                    <a href="mailto:contact@overdosed.com" class="social-link">EMAIL</a>
+                    <a href="https://t.me/overdosedstore" target="_blank" class="social-link">TELEGRAM</a>
+                    <a href="https://vk.com/overdosed" target="_blank" class="social-link">VK</a>
+                    <a href="https://t.me/paraxyozik" target="_blank" class="social-link social-link-faded">РАЗРАБОТЧИК САЙТА</a>
                 </div>
             </div>
             
             <!-- Copyright -->
             <div class="copyright">
-                <p>&copy; 2026 OVERDOSED. All rights reserved.</p>
+                <p data-i18n="copyright">&copy; 2026 OVERDOSED. Все права защищены.</p>
             </div>
         </footer>
     </div>
 
+    <script src="i18n.js"></script>
     <script>
         // Mouse follow effect for main product image
         const productImage = document.querySelector('.product-image-link');
