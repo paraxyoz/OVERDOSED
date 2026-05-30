@@ -81,9 +81,25 @@ a {
     color: #ff0000;
 }
 
-.header-link:last-child {
-    font-size: 11px;
-    letter-spacing: 0.5px;
+.marquee {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 0;
+    color: #aaa;
+    font-size: inherit;
+    letter-spacing: inherit;
+}
+
+.marquee-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marqueeScroll 40s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .search-icon {
@@ -991,11 +1007,6 @@ a {
         letter-spacing: 0.5px;
     }
     
-    .header-link:last-child {
-        font-size: 9px;
-        max-width: 200px;
-        text-align: right;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1058,10 +1069,6 @@ a {
         font-size: 13px;
     }
     
-    .header-link:last-child {
-        font-size: 8px;
-        max-width: 150px;
-    }
     
     .nav-link {
         font-size: 9px;

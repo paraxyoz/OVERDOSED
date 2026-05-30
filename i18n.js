@@ -1124,10 +1124,23 @@ function buildLanguageModal() {
   document.body.appendChild(overlay);
 }
 
+function buildMarquee() {
+  const marquee = document.getElementById('headerMarquee');
+  if (!marquee) return;
+  const words = LANGUAGES.map(lang => {
+    const tagline = TRANSLATIONS[lang.code]?.header_tagline || '';
+    const match = tagline.match(/\/\/\s*(.*?)\s*\//);
+    return match ? match[1].trim() : '';
+  });
+  const content = words.join(' // ');
+  marquee.innerHTML = '<div class="marquee-track">' + content + ' // ' + content + ' // </div>';
+}
+
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
   buildLanguageModal();
   applyTranslations();
+  buildMarquee();
 
   // Setup language toggle button
   const langToggle = document.getElementById('langToggle');
