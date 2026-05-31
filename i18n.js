@@ -343,17 +343,17 @@ function buildMarquee() {
   if (!marquee) return;
   const words = [
     'ПЕРЕДОЗИРОВКА',
-    'OVERDOSE',
-    'ПЕРЕДОЗИРОВКА',
-    'OVERDOSE',
-    'ПЕРЕДОЗИРОВКА',
-    'OVERDOSE',
-    'ПЕРЕДОЗИРОВКА',
-    'OVERDOSE',
-    'ПЕРЕДОЗИРОВКА'
+    'przedawkować',
+    'перадазіроўка',
+    'supradozat',
+    'предозиран',
+    'předávkovaný',
+    'perdozuotas',
+    'pārdozēts',
+    'üledoosi saanud'
   ];
   const content = words.join(' // ');
-  marquee.innerHTML = '<div class="marquee-track">' + content + ' // ' + content + ' // </div>';
+  marquee.innerHTML = '<div class="marquee-track" style="animation: marqueeScroll 40s linear infinite; will-change: transform;">' + content + ' // ' + content + ' // ' + content + ' // ' + content + '</div>';
 }
 
 // Initialize on DOM ready

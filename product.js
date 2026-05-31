@@ -1,6 +1,6 @@
 const productsData = {
   1: {
-    price: 3500,
+    price: 2500,
     priceUSD: 50,
     image: 'images/ti_gotov.png',
     nameKey: 'product_1_name',
@@ -16,7 +16,7 @@ const productsData = {
     }
   },
   2: {
-    price: 4500,
+    price: 3500,
     priceUSD: 65,
     image: 'images/rubashka.png',
     nameKey: 'product_2_name',
