@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OVERDOSED – Not a Drugs</title>
     <link rel="icon" type="image/png" href="images/photo_2025-02-17_22-31-16-Photoroom.png">
-    <link rel="stylesheet" href="style.css?v=1.12.0">
+    <link rel="stylesheet" href="style.css?v=1.13.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,6 +34,7 @@
             <nav class="main-nav">
                 <a href="#shop" class="nav-link">// <span class="nav-text" data-i18n="shop">МАГАЗИН</span> \\</a>
                 <a href="lookbook.html" class="nav-link">// <span class="nav-text" data-i18n="lookbook">ЛУКБУК</span> \\</a>
+                <a href="about.html" class="nav-link">// <span class="nav-text" data-i18n="about">О НАС</span> \\</a>
             </nav>
         </header>
 
@@ -41,7 +42,7 @@
         <main class="main-content">
             <div class="product-hero">
                 <div class="product-title-section">
-                    <p class="availability" data-i18n="availability" data-i18n-html="true"><span class="av-line-1">Рано или поздно он —</span> <span class="red-text av-line-2">до вас доберётся</span></p>
+                    <p class="availability" data-i18n="availability" data-i18n-html="true"><span class="av-line-1">Рано или поздно —</span> <span class="red-text av-line-2">он до вас доберётся</span></p>
                 </div>
 
                 <!-- XXX с ГОРИЗОНТАЛЬНЫМИ полосками над изображением -->
@@ -137,7 +138,7 @@
         </footer>
     </div>
 
-    <script src="i18n.js?v=1.12.0"></script>
+    <script src="i18n.js?v=1.13.0"></script>
     <script>
         // Mouse follow effect for main product image
         const productImage = document.querySelector('.product-image-link');
@@ -155,6 +156,37 @@
         updateIndexPrices();
         document.addEventListener('languageChanged', updateIndexPrices);
 
+        // Smooth rotating circle with speed lerp on hover
+        (function() {
+            const circle = document.querySelector('.rotating-text-circle');
+            const wrapper = document.querySelector('.product-image-wrapper');
+            if (!circle || !wrapper) return;
+
+            let angle = 0;
+            let currentSpeed = 30;
+            let targetSpeed = 30;
+            let lastTime = 0;
+            let id = null;
+
+            function frame(time) {
+                if (!lastTime) lastTime = time;
+                const dt = Math.min((time - lastTime) / 1000, 0.1);
+                lastTime = time;
+
+                currentSpeed += (targetSpeed - currentSpeed) * Math.min(dt * 4, 0.12);
+                if (Math.abs(currentSpeed - targetSpeed) < 0.01) currentSpeed = targetSpeed;
+
+                const step = (dt / currentSpeed) * 360;
+                angle = (angle + step) % 360;
+                circle.style.transform = 'rotate(' + angle + 'deg)';
+                id = requestAnimationFrame(frame);
+            }
+
+            wrapper.addEventListener('mouseenter', function() { targetSpeed = 10; });
+            wrapper.addEventListener('mouseleave', function() { targetSpeed = 30; });
+            id = requestAnimationFrame(frame);
+        })();
+
         if (productImage && mainProductImg) {
             document.addEventListener('mousemove', (e) => {
                 const rect = productImage.getBoundingClientRect();
@@ -167,7 +199,7 @@
                 const rotateX = (mouseY / rect.height) * 8;
                 const rotateY = (mouseX / rect.width) * 8;
                 
-                mainProductImg.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                mainProductImg.style.transform = 'scale(1.05) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
             });
 
 

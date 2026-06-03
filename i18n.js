@@ -71,7 +71,7 @@ const TRANSLATIONS = {
     quantity_label: 'Количество',
     total_label: 'Итого',
     // Index page specific
-    availability: '<span class="av-line-1">Рано или поздно он —</span> <span class="red-text av-line-2">до вас доберётся</span>',
+    availability: '<span class="av-line-1">Рано или поздно —</span> <span class="red-text av-line-2">он до вас доберётся</span>',
     hero_title: 'ПИВЧАНСКИЙ —',
     xxx: 'XXX',
     header_tagline: '// ПЕРЕДОЗИРОВКА // OVERDOSE // OVERDOSED //',
@@ -360,7 +360,9 @@ function buildMarquee() {
 document.addEventListener('DOMContentLoaded', function() {
   buildLanguageModal();
   buildContactModal();
+  currentLang = localStorage.getItem('overdosed_lang') || 'ru';
   applyTranslations();
+  showLanguageContent(currentLang);
   buildMarquee();
 
   // Setup language toggle button
