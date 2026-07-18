@@ -50,8 +50,10 @@ function showCookieBanner() {
   document.body.appendChild(banner);
 }
 
-if (getCookieConsent()) {
-  grantConsent();
-} else {
-  showCookieBanner();
-}
+document.addEventListener('DOMContentLoaded', function() {
+  if (getCookieConsent()) {
+    if (typeof grantConsent === 'function') grantConsent();
+  } else {
+    showCookieBanner();
+  }
+});
