@@ -1,5 +1,9 @@
+<?php
+require_once __DIR__ . '/db.php';
+$products = getAllProducts($pdo);
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +26,33 @@
         @keyframes tw-blink {
             50% { opacity: 0; }
         }
-    </style>
-    <script>
-        if (window.location.protocol.startsWith('http')) {
-            window.location.replace('index.php' + window.location.search + window.location.hash);
+        .db-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            padding: 3px 8px;
+            background: rgba(30, 255, 120, 0.1);
+            border: 1px solid rgba(30, 255, 120, 0.3);
+            color: #1eff78;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-    </script>
+        .db-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #1eff78;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #1eff78;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+    </style>
 </head>
 <body>
     <!-- Header section (Fixed to viewport) -->
@@ -36,14 +61,17 @@
             <div class="header-top">
                 <a href="#" class="header-link" id="langToggle" data-i18n="languages">ЯЗЫКИ</a>
                 <div class="marquee" id="headerMarquee"></div>
-                <a href="#" class="search-icon">
-                    <i class="fas fa-search"></i>
-                </a>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <a href="admin.php" title="Управление базой данных" class="header-link" style="opacity: 0.7; font-size: 12px;"><i class="fas fa-database"></i> БД / АДМИНКА</a>
+                    <a href="#" class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
             </div>
             
             <!-- Логотип OVERDOSED с ссылкой на главную -->
             <div class="logo-section">
-                <a href="index.html" class="logo-link">
+                <a href="index.php" class="logo-link">
                     <h1 class="logo">ОВЕРДОЗ</h1>
                 </a>
             </div>
@@ -81,19 +109,18 @@
                     <div class="tech-line"></div>
                     <div class="tech-data">
                         <span class="tech-blink"></span>
-                        <span class="tech-text">SYS.TRACKING // TARGET_LOCKED</span>
-                        <span class="tech-coords">N°45.33 / W°12.99</span>
+                        <span class="tech-text">SYS.TRACKING // MYSQL_CONNECTED</span>
+                        <span class="db-badge"><span class="db-badge-dot"></span> БАЗА ДАННЫХ: OVERDOSED (<?= count($products) ?> ТОВАРА)</span>
                     </div>
                     <div class="tech-line"></div>
                 </div>
                 
                 <!-- Главное изображение продукта с ссылкой -->
                 <div class="product-image-wrapper">
-
-                    <a href="#enemy-hoodie" class="product-image-link">
+                    <a href="product.php?id=<?= !empty($products) ? $products[0]['id'] : 1 ?>" class="product-image-link">
                         <div class="product-image">
-                            <img src="images/ti_gotov.png" alt="ENEMY HOODIE" class="main-product-img">
-                            <div class="image-fallback">ENEMY HOODIE</div>
+                            <img src="<?= !empty($products) ? htmlspecialchars($products[0]['image']) : 'images/ti_gotov.png' ?>" alt="ENEMY HOODIE" class="main-product-img">
+                            <div class="image-fallback">OVERDOSED</div>
                         </div>
                     </a>
                 </div>
@@ -108,41 +135,36 @@
                 </div>
                 
                 <div class="products-grid">
-                    <!-- Продукт 1 -->
-                    <a href="product.html?id=1" class="product-link product-card-animate" style="animation-delay: 0.1s;">
-                        <div class="product-card">
-                            <div class="product-image-container">
-                                <img src="images/ti_gotov.png" alt="ENEMY SYSTEM HOODIE" class="product-img">
-                                <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
-                                <div class="product-overlay">
-                                    <span class="product-overlay-text" data-i18n="view_product">СМОТРЕТЬ</span>
+                    <?php if (empty($products)): ?>
+                        <p style="text-align: center; width: 100%; color: #888;">В базе данных пока нет товаров.</p>
+                    <?php else: ?>
+                        <?php foreach ($products as $index => $prod): ?>
+                            <a href="product.php?id=<?= htmlspecialchars($prod['id']) ?>" class="product-link product-card-animate" style="animation-delay: <?= 0.1 * ($index + 1) ?>s;">
+                                <div class="product-card">
+                                    <div class="product-image-container">
+                                        <img src="<?= htmlspecialchars($prod['image']) ?>" alt="<?= htmlspecialchars(strip_tags($prod['name_ru'])) ?>" class="product-img">
+                                        <div class="image-fallback-small"><?= $prod['name_ru'] ?></div>
+                                        <div class="product-overlay">
+                                            <span class="product-overlay-text" data-i18n="view_product">СМОТРЕТЬ</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h4 class="product-name" 
+                                            data-i18n-html="true" 
+                                            data-i18n-ru="<?= htmlspecialchars($prod['name_ru'], ENT_QUOTES) ?>" 
+                                            data-i18n-en="<?= htmlspecialchars($prod['name_en'], ENT_QUOTES) ?>">
+                                            <?= $prod['name_ru'] ?>
+                                        </h4>
+                                        <div class="product-price" 
+                                             data-price-rub="<?= htmlspecialchars($prod['price_rub']) ?>" 
+                                             data-price-usd="<?= htmlspecialchars($prod['price_usd']) ?>">
+                                            <?= number_format($prod['price_rub'], 0, '', ' ') ?>₽
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-info">
-                                <h4 class="product-name" data-i18n="product_1_fullname" data-i18n-html="true" data-i18n-ru='<span class="red-text">ФУТБОЛКА</span> ИЗДЕЛИЕ №1' data-i18n-en='<span class="red-text">T-SHIRT</span> PRODUCT №1'><span class="red-text">ФУТБОЛКА</span> ИЗДЕЛИЕ №1</h4>
-                                <div class="product-price" data-price-rub="2500" data-price-usd="36">3 500₽</div>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- Продукт 2 -->
-                    <a href="product.html?id=2" class="product-link product-card-animate" style="animation-delay: 0.3s;">
-                        <div class="product-card">
-                            <div class="product-image-container">
-                                <img src="images/rubashka.png" alt="ENEMY SYSTEM HOODIE" class="product-img">
-                                <div class="image-fallback-small"><span class="red-text">ENEMY</span> SYSTEM HOODIE</div>
-                                <div class="product-overlay">
-                                    <span class="product-overlay-text" data-i18n="view_product">СМОТРЕТЬ</span>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h4 class="product-name" data-i18n="product_2_fullname" data-i18n-html="true" data-i18n-ru='<span class="red-text">РУБАШКА</span> ИЗДЕЛИЕ №2' data-i18n-en='<span class="red-text">SHIRT</span> PRODUCT №2'><span class="red-text">РУБАШКА</span> ИЗДЕЛИЕ №2</h4>
-                                <div class="product-price" data-price-rub="3500" data-price-usd="50">4 500₽</div>
-                            </div>
-                        </div>
-                    </a>
-                    
-
+                            </a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </section>
         </main>
@@ -154,6 +176,7 @@
                     <a href="about.html" class="footer-link" data-i18n="about">О НАС</a>
                     <a href="#" class="footer-link contact-link" data-i18n="contact">КОНТАКТЫ</a>
                     <a href="terms.html" class="footer-link" data-i18n="terms_of_service">УСЛОВИЯ</a>
+                    <a href="admin.php" class="footer-link" style="color: #1eff78;"><i class="fas fa-database"></i> УПРАВЛЕНИЕ БД</a>
                 </div>
                 
                 <div class="social-links">
@@ -191,37 +214,6 @@
         updateIndexPrices();
         document.addEventListener('languageChanged', updateIndexPrices);
 
-        // Smooth rotating circle with speed lerp on hover
-        (function() {
-            const circle = document.querySelector('.rotating-text-circle');
-            const wrapper = document.querySelector('.product-image-wrapper');
-            if (!circle || !wrapper) return;
-
-            let angle = 0;
-            let currentSpeed = 30;
-            let targetSpeed = 30;
-            let lastTime = 0;
-            let id = null;
-
-            function frame(time) {
-                if (!lastTime) lastTime = time;
-                const dt = Math.min((time - lastTime) / 1000, 0.1);
-                lastTime = time;
-
-                currentSpeed += (targetSpeed - currentSpeed) * Math.min(dt * 4, 0.12);
-                if (Math.abs(currentSpeed - targetSpeed) < 0.01) currentSpeed = targetSpeed;
-
-                const step = (dt / currentSpeed) * 360;
-                angle = (angle + step) % 360;
-                circle.style.transform = 'rotate(' + angle + 'deg)';
-                id = requestAnimationFrame(frame);
-            }
-
-            wrapper.addEventListener('mouseenter', function() { targetSpeed = 4; });
-            wrapper.addEventListener('mouseleave', function() { targetSpeed = 30; });
-            id = requestAnimationFrame(frame);
-        })();
-
         if (productImage && mainProductImg) {
             document.addEventListener('mousemove', (e) => {
                 const rect = productImage.getBoundingClientRect();
@@ -236,8 +228,6 @@
                 
                 mainProductImg.style.transform = 'scale(1.05) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
             });
-
-
 
             // Reset on mouse leave
             productImage.addEventListener('mouseleave', () => {
@@ -258,28 +248,24 @@
                 const frames = [];
                 const delays = [];
                 
-                // Проверяем, русская ли это версия
                 const targetText = 'Рано или поздно';
                 const indexOfText = rawHTML.indexOf(targetText);
                 
                 if (indexOfText !== -1) {
-                    const tagPrefix = rawHTML.substring(0, indexOfText); // Всё до буквы 'Р' (включая html теги)
+                    const tagPrefix = rawHTML.substring(0, indexOfText);
                     const typo = 'Рвано или позорно -';
-                    const correctRestHTML = rawHTML.substring(indexOfText + 1); // Всё после первой буквы 'Р'
+                    const correctRestHTML = rawHTML.substring(indexOfText + 1);
                     
-                    // 1. Печатаем опечатку
                     for (let i = 1; i <= typo.length; i++) {
                         frames.push(tagPrefix + typo.substring(0, i));
-                        delays.push(i === typo.length ? 700 : 40 + Math.random() * 40); // пауза в конце опечатки
+                        delays.push(i === typo.length ? 700 : 40 + Math.random() * 40);
                     }
                     
-                    // 2. Стираем опечатку (до 'Р')
                     for (let i = typo.length - 1; i >= 1; i--) {
                         frames.push(tagPrefix + typo.substring(0, i));
-                        delays.push(25 + Math.random() * 15); // быстрое стирание
+                        delays.push(25 + Math.random() * 15);
                     }
                     
-                    // 3. Печатаем правильный остаток
                     let currentHTML = tagPrefix + 'Р';
                     let j = 0;
                     let isTag = false;
@@ -292,18 +278,17 @@
                         j++;
                         
                         if (isTag || (j < correctRestHTML.length && correctRestHTML.charAt(j) === '<')) {
-                            // Пропускаем кадр, если мы внутри тега, чтобы он отрендерился мгновенно
+                            // skip
                         } else {
                             frames.push(currentHTML);
                             if (char === '.') {
-                                delays.push(500 + Math.random() * 300); // Медленная печать для точек
+                                delays.push(500 + Math.random() * 300);
                             } else {
                                 delays.push(35 + Math.random() * 30);
                             }
                         }
                     }
                 } else {
-                    // Обычная печать для других языков (без опечатки)
                     let currentHTML = '';
                     let j = 0;
                     let isTag = false;
@@ -316,7 +301,7 @@
                         j++;
                         
                         if (isTag || (j < rawHTML.length && rawHTML.charAt(j) === '<')) {
-                            // Пропускаем
+                            // skip
                         } else {
                             frames.push(currentHTML);
                             delays.push(35 + Math.random() * 30);
@@ -325,7 +310,6 @@
                 }
                 
                 let frameIndex = 0;
-                
                 function playFrame() {
                     if (frameIndex < frames.length) {
                         subtitle.innerHTML = frames[frameIndex] + '<span class="tw-cursor">|</span>';
@@ -333,16 +317,12 @@
                         frameIndex++;
                         setTimeout(playFrame, delay);
                     } else {
-                        subtitle.innerHTML = rawHTML; // финиш
+                        subtitle.innerHTML = rawHTML;
                     }
                 }
-                
                 playFrame();
             }
-            
-            // Запуск после того, как i18n точно применил переводы
             setTimeout(startTyping, 250);
-            
         });
     </script>
 </body>
